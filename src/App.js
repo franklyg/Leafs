@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import leafs from './leafs-logo.png'
 import './App.css';
 import Score from './components/Score';
