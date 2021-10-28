@@ -45,20 +45,21 @@ function Score(){
                                     }
                                 </div>
                             )
-                        }else{
-                            return(
-                                <div>
-                                    {
-                                        scoreItem[0][0] == 'TOR' && scoreItem[0][1] > scoreItem[1][1] // Winning at Home
-                                        || 
-                                        scoreItem[1][0] == 'TOR' && scoreItem[1][1] > scoreItem[0][1] ? // Winning Away
-                                        <p>We're winning.</p>
-                                        :
-                                        <p>{responseRender()}</p>
-                                    }
-                                </div>
-                            )
                         }
+                        else{
+                                return(
+                                    <div>
+                                        {
+                                            scoreItem[0][0] == 'TOR' && scoreItem[0][1] > scoreItem[1][1] // Winning at Home
+                                            || 
+                                            scoreItem[1][0] == 'TOR' && scoreItem[1][1] > scoreItem[0][1] ? // Winning Away
+                                            <p>We're winning.</p>
+                                            :
+                                            <p>{responseRender()}</p>
+                                        }
+                                    </div>
+                                )
+                            }
                         }
                     })
                 }
