@@ -5,7 +5,7 @@ import Score from './components/Score';
 function App() {
   return (
     <div className="App">
-      <img src={leafs} className="logo"/>
+      <img src={leafs} className="logo" alt="Leafs logo"/>
       <Score />
     </div>
   );
