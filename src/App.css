@@ -1,38 +1,54 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+body{
+  background: #00205a;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logo{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  display: block;
+  filter: blur(11px);
+  z-index: 0;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.component-score{
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
   display: flex;
-  flex-direction: column;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+.message,
+.score{
+  font-family: 'Bebas Neue';
+}
+.message{
+  font-size: 20vw;
   color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,.5);
+  font-weight: bold; 
 }
-
-.App-link {
-  color: #61dafb;
+.score{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  font-size: 4vw;
+  color: #00205a;
+  background: white;
+  padding: 15px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.score p{
+  margin: 0;
+  letter-spacing: 5px;
+  font-weight: bold;
 }
