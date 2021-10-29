@@ -27,12 +27,16 @@ body{
 .message,
 .score{
   font-family: 'Bebas Neue';
+  text-align: center;
 }
 .message{
-  font-size: 20vw;
+  font-size: 18vw;
   color: white;
   text-shadow: 2px 2px 4px rgba(0,0,0,.5);
   font-weight: bold; 
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 .score{
   position: absolute;

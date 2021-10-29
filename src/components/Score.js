@@ -47,19 +47,31 @@ function Score(){
                             :
                             <div>
                                 {
-                                    scoreItem[0][0] === 'TOR' && scoreItem[0][1] > scoreItem[1][1] || scoreItem[1][0] === 'TOR' && scoreItem[1][1] > scoreItem[0][1] ? // Winning Away
+                                    scoreItem[0][1] > scoreItem[1][1] || scoreItem[1][1] > scoreItem[0][1] ? // Winning Away
                                     <p>We're winning.</p>
                                     :
                                     <p>{responseRender()}</p>
                                 }
                             </div>
+                            
                         )
                     })
                 }
+                {
+                score.filter(e => e.scores['MIN'])
+                .map((e,i) => {
+                    return(
+                        e.scores['TOR'] ?
+                        null
+                        :
+                        <p>NO GAME TODAY</p>
+                    )
+                })
+            }
             </div>
             <div className="score">
             {
-                score.filter(e => e.scores['TOR'])
+                score.filter(e => e.scores['MIN'])
                 .map((e,i) => {
                     return(
                         e.scores['TOR'] ?
@@ -72,7 +84,7 @@ function Score(){
                             }
                         </React.Fragment>
                         :
-                        null
+                        <p>NOTHING HERE</p>
                     )
                 })
             }
