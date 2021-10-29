@@ -13,8 +13,13 @@ body{
   display: block;
   filter: blur(11px);
   z-index: 0;
-  width: 65vw;
+  width: 80vw;
   max-width: 500px;
+}
+@media (min-width: 1024px){
+  .logo{
+    top: 5vw;
+  }
 }
 .component-score{
   width: 100vw;
