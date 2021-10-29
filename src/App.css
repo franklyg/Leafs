@@ -30,13 +30,17 @@ body{
   text-align: center;
 }
 .message{
-  font-size: 18vw;
+  font-size: 17vw;
   color: white;
   text-shadow: 2px 2px 4px rgba(0,0,0,.5);
   font-weight: bold; 
   height: 100vh;
+  width: calc(100vw - 20px);
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 10px;
 }
 .score{
   position: absolute;
@@ -49,7 +53,7 @@ body{
   font-size: 4vw;
   color: #00205a;
   background: white;
-  padding: 15px;
+  padding: 15px 0;
 }
 .score p{
   margin: 0;
