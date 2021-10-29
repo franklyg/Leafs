@@ -27,46 +27,40 @@ function Score(){
 
     return(
         <div className="component-score">
-            <div class="message">
+            <div className="message">
                 {
-                    score.map((e, i) => {
-                        if(e.scores['TOR']) {
+                    score.filter(e => e.scores['TOR'])
+                        .map((e, i) => {
                         var scoreItem = Object.entries(e.scores)
-                        if(e.status.state == 'FINAL'){
-                            return(
-                                <div>
-                                    {
-                                        scoreItem[0][0] == 'TOR' && scoreItem[0][1] > scoreItem[1][1] // Winning at Home
-                                        || 
-                                        scoreItem[1][0] == 'TOR' && scoreItem[1][1] > scoreItem[0][1] ? // Winning Away
-                                        <p>We Won.</p>
-                                        :
-                                        <p>Onto the next one.</p>
-                                    }
-                                </div>
-                            )
-                        }
-                        else{
-                                return(
-                                    <div>
-                                        {
-                                            scoreItem[0][0] == 'TOR' && scoreItem[0][1] > scoreItem[1][1] // Winning at Home
-                                            || 
-                                            scoreItem[1][0] == 'TOR' && scoreItem[1][1] > scoreItem[0][1] ? // Winning Away
-                                            <p>We're winning.</p>
-                                            :
-                                            <p>{responseRender()}</p>
-                                        }
-                                    </div>
-                                )
-                            }
-                        }
+                        return(
+                            e.status.state === 'FINAL' ?
+                            <div>
+                                {
+                                    scoreItem[0][1] > scoreItem[1][1] // Winning at Home
+                                    || 
+                                    scoreItem[1][1] > scoreItem[0][1] ? // Winning Away
+                                    <p>We Won.</p>
+                                    :
+                                    <p>Onto the next one.</p>
+                                }
+                            </div>
+                            :
+                            <div>
+                                {
+                                    scoreItem[0][0] === 'TOR' && scoreItem[0][1] > scoreItem[1][1] || scoreItem[1][0] === 'TOR' && scoreItem[1][1] > scoreItem[0][1] ? // Winning Away
+                                    <p>We're winning.</p>
+                                    :
+                                    <p>{responseRender()}</p>
+                                }
+                            </div>
+                        )
                     })
                 }
             </div>
-            <div class="score">
+            <div className="score">
             {
-                score.map((e,i) => {
+                score.filter(e => e.scores['TOR'])
+                .map((e,i) => {
                     return(
                         e.scores['TOR'] ?
                         <React.Fragment key={i}>
