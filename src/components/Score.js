@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react';
 function Score(){
 
     const [score, setScore] = useState([]);
+    const [playing, setPlaying] = useState(true)
+
     var responses = [
         "Nope",
         "F*ck my life",
@@ -12,11 +14,20 @@ function Score(){
         "I can't take this",
         "Why am I watching this?"
     ]
+
     useEffect(() => {
         fetch('https://nhl-score-api.herokuapp.com/api/scores/latest')
         .then(results => results.json())
         .then(data => {
             setScore(data.games)
+            data.games.filter(i => 
+                i.scores['TOR']
+            ).forEach(e=>{
+                e.scores['TOR'] === undefined ? 
+                setPlaying(false)
+                : 
+                setPlaying(true)
+            })
         });
     }, []);
 
@@ -29,8 +40,14 @@ function Score(){
         <div className="component-score">
             <div className="message">
                 {
-                    score.filter(e => e.scores['TOR'])
-                        .map((e, i) => {
+                    score.filter(e => 
+                        e.scores['TOR'] ?
+                        e.scores['TOR']
+                        :
+                        null
+
+                    ).map((e, i) => {
+                        
                         var scoreItem = Object.entries(e.scores)
                         return(
                             e.status.state === 'FINAL' ?
@@ -58,20 +75,15 @@ function Score(){
                     })
                 }
                 {
-                score.filter(e => e.scores['MIN'])
-                .map((e,i) => {
-                    return(
-                        e.scores['TOR'] ?
-                        null
-                        :
-                        <p>NO GAME TODAY</p>
-                    )
-                })
-            }
+                    !playing ?
+                    null
+                    :
+                    <p>Sorry, Bud. Come back soon.</p>
+                }
             </div>
             <div className="score">
             {
-                score.filter(e => e.scores['MIN'])
+                score.filter(e => e.scores['TOR'])
                 .map((e,i) => {
                     return(
                         e.scores['TOR'] ?
@@ -87,6 +99,12 @@ function Score(){
                         <p>NOTHING HERE</p>
                     )
                 })
+            }
+            {
+                !playing ?
+                null
+                :
+                <p>LEAFSFOREVER</p>
             }
             </div>
         </div>
