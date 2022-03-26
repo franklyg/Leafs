@@ -1,10 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React    from 'react';
 
-function Score(){
-
-    const [score, setScore] = useState([]);
-    const [playing, setPlaying] = useState(true)
-
+function Score({playing, score, team}){
     var responses = [
         "Nope",
         "F*ck my life",
@@ -12,100 +8,109 @@ function Score(){
         "WTF",
         "LOL",
         "I can't take this",
-        "Why am I watching this?"
+        "Why am I watching this?",
+        ":(",
+        "💩",
+        "#sad"
     ]
-
-    useEffect(() => {
-        fetch('https://nhl-score-api.herokuapp.com/api/scores/latest')
-        .then(results => results.json())
-        .then(data => {
-            setScore(data.games)
-            data.games.filter(i => 
-                i.scores['TOR']
-            ).forEach(e=>{
-                e.scores['TOR'] === undefined ? 
-                setPlaying(false)
-                : 
-                setPlaying(true)
-            })
-        });
-    }, []);
-
     function responseRender(){
         var randomNumber = Math.floor(Math.random()*responses.length);
         return responses[randomNumber];
     }
-
     return(
         <div className="component-score">
             <div className="message">
                 {
-                    score.filter(e => 
-                        e.scores['TOR'] ?
-                        e.scores['TOR']
-                        :
-                        null
-
-                    ).map((e, i) => {
-                        
-                        var scoreItem = Object.entries(e.scores)
-                        return(
-                            e.status.state === 'FINAL' ?
-                            <div>
+                    Object.entries(score).map((e, i)=>(
+                        <>
+                            {
+                                e[0].indexOf('scores') > -1  ?
+                                <>
+                                <p>{Object.entries(e[1])[1][0]} : {Object.entries(e[1])[1][1]}</p> 
+                                <p>{Object.entries(e[1])[0][0]} : {Object.entries(e[1])[0][1]}</p>
+                                </>
+                                :
+                                null
+                            }
+                        </>
+                    ))
+                }
+                {
+                    Object.entries(score).map((e, i)=>(
+                        <>
+                            {
+                            e[0].indexOf('scores') > -1  ?
+                            <div key={i}>
+                                {/* HOME */}
                                 {
-                                    scoreItem[0][1] > scoreItem[1][1] // Winning at Home
-                                    || 
-                                    scoreItem[1][1] > scoreItem[0][1] ? // Winning Away
-                                    <p>We Won.</p>
+                                    Object.entries(e[1])[1][0] === team ?
+                                    <p key={i}>
+                                        {
+                                            (Object.entries(e[1])[1][1] > Object.entries(e[1])[0][1]) ?
+                                            
+                                            <p>Winning</p>
+                                            :
+                                            null
+                                        }
+                                        {
+                                            (Object.entries(e[1])[1][1] < Object.entries(e[1])[0][1]) ?
+                                            responseRender()
+                                            :
+                                            null
+                                        }
+                                        {
+                                            (Object.entries(e[1])[1][1] === Object.entries(e[1])[0][1]) ?
+                                            
+                                            <p>tied</p>
+                                            :
+                                            null
+                                        }
+                                    </p>
                                     :
-                                    <p>Onto the next one.</p>
+                                    null
+                                }
+                                {/* AWAY */}
+                                {
+                                Object.entries(e[1])[0][0] === team ?
+                                    <p key={i}>
+                                        {
+                                            (Object.entries(e[1])[0][1] > Object.entries(e[1])[1][1]) ?
+                                            
+                                            <p>Winning</p>
+                                            :
+                                            null
+                                        }
+                                        {
+                                            (Object.entries(e[1])[0][1] < Object.entries(e[1])[1][1]) ?
+                                            responseRender()
+                                            :
+                                            null
+                                        }
+                                        {
+                                            (Object.entries(e[1])[0][1] === Object.entries(e[1])[1][1]) ?
+                                            
+                                            <p>Tied</p>
+                                            :
+                                            null
+                                        }
+                                    </p>
+                                    :
+                                    null
+                                }
+                                {/* INACTIVE */}
+                                {
+                                    (Object.entries(e[1])[0][0] === team) || (Object.entries(e[1])[1][0] === team) ?
+                                    null
+                                    :
+                                    <p key={i}>not playing</p>
                                 }
                             </div>
                             :
-                            <div>
-                                {
-                                    scoreItem[0][1] > scoreItem[1][1] || scoreItem[1][1] > scoreItem[0][1] ? // Winning Away
-                                    <p>We're winning.</p>
-                                    :
-                                    <p>{responseRender()}</p>
-                                }
-                            </div>
-                            
-                        )
-                    })
-                }
-                {
-                    !playing ?
-                    null
-                    :
-                    <p>Sorry, Bud. Come back soon.</p>
-                }
-            </div>
-            <div className="score">
-            {
-                score.filter(e => e.scores['TOR'])
-                .map((e,i) => {
-                    return(
-                        e.scores['TOR'] ?
-                        <React.Fragment key={i}>
-                            {
-                                e.scores['TOR'] ?
-                                <p>{JSON.stringify(e.scores).replace(/[{}:"",overtime,true]/g, ' ')}</p>
-                                :
-                                <p>Sorry</p>
+                            null
                             }
-                        </React.Fragment>
-                        :
-                        <p>NOTHING HERE</p>
-                    )
-                })
-            }
-            {
-                !playing ?
-                null
-                :
-                <p>LEAFSFOREVER</p>
-            }
+                        </>
+                    ))
+                }   
             </div>
         </div>
     )
