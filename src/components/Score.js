@@ -18,100 +18,23 @@ function Score({playing, score, team}){
         return responses[randomNumber];
     }
     return(
-        <div className="component-score">
-            <div className="message">
-                {
-                    Object.entries(score).map((e, i)=>(
-                        <>
-                            {
-                                e[0].indexOf('scores') > -1  ?
-                                <>
-                                <p>{Object.entries(e[1])[1][0]} : {Object.entries(e[1])[1][1]}</p> 
-                                <p>{Object.entries(e[1])[0][0]} : {Object.entries(e[1])[0][1]}</p>
-                                </>
-                                :
-                                null
-                            }
-                        </>
-                    ))
-                }
-                {
-                    Object.entries(score).map((e, i)=>(
-                        <>
-                            {
+        
+        <div className="score">
+            {
+                Object.entries(score).map((e, i)=>(
+                    <>
+                        {
                             e[0].indexOf('scores') > -1  ?
-                            <div key={i}>
-                                {/* HOME */}
-                                {
-                                    Object.entries(e[1])[1][0] === team ?
-                                    <p key={i}>
-                                        {
-                                            (Object.entries(e[1])[1][1] > Object.entries(e[1])[0][1]) ?
-                                            
-                                            <p>Winning</p>
-                                            :
-                                            null
-                                        }
-                                        {
-                                            (Object.entries(e[1])[1][1] < Object.entries(e[1])[0][1]) ?
-                                            responseRender()
-                                            :
-                                            null
-                                        }
-                                        {
-                                            (Object.entries(e[1])[1][1] === Object.entries(e[1])[0][1]) ?
-                                            
-                                            <p>tied</p>
-                                            :
-                                            null
-                                        }
-                                    </p>
-                                    :
-                                    null
-                                }
-                                {/* AWAY */}
-                                {
-                                Object.entries(e[1])[0][0] === team ?
-                                    <p key={i}>
-                                        {
-                                            (Object.entries(e[1])[0][1] > Object.entries(e[1])[1][1]) ?
-                                            
-                                            <p>Winning</p>
-                                            :
-                                            null
-                                        }
-                                        {
-                                            (Object.entries(e[1])[0][1] < Object.entries(e[1])[1][1]) ?
-                                            responseRender()
-                                            :
-                                            null
-                                        }
-                                        {
-                                            (Object.entries(e[1])[0][1] === Object.entries(e[1])[1][1]) ?
-                                            
-                                            <p>Tied</p>
-                                            :
-                                            null
-                                        }
-                                    </p>
-                                    :
-                                    null
-                                }
-                                {/* INACTIVE */}
-                                {
-                                    (Object.entries(e[1])[0][0] === team) || (Object.entries(e[1])[1][0] === team) ?
-                                    null
-                                    :
-                                    <p key={i}>not playing</p>
-                                }
-                            </div>
+                            <>
+                            <p>{Object.entries(e[1])[1][0]} : {Object.entries(e[1])[1][1]}</p> 
+                            <p>{Object.entries(e[1])[0][0]} : {Object.entries(e[1])[0][1]}</p>
+                            </>
                             :
                             null
-                            }
-                        </>
-                    ))
-                }   
-            </div>
+                        }
+                    </>
+                ))
+            }
         </div>
     )
 }
