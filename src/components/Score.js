@@ -13,10 +13,6 @@ function Score({playing, score, team}){
         "💩",
         "#sad"
     ]
-    function responseRender(){
-        var randomNumber = Math.floor(Math.random()*responses.length);
-        return responses[randomNumber];
-    }
     return(
         
         <div className="score">
