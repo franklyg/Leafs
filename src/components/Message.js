@@ -28,31 +28,34 @@ function Message({playing, score, team}){
                             <div key={i}>
                                 {/* HOME */}
                                 {
-                                    Object.entries(e[1])[1][0] === team ?
-                                    <p key={i}>
-                                        {
-                                            (Object.entries(e[1])[1][1] > Object.entries(e[1])[0][1]) ?
-                                            
-                                            <p>Winning</p>
-                                            :
-                                            null
-                                        }
-                                        {
-                                            (Object.entries(e[1])[1][1] < Object.entries(e[1])[0][1]) ?
-                                            responseRender()
-                                            :
-                                            null
-                                        }
-                                        {
-                                            (Object.entries(e[1])[1][1] === Object.entries(e[1])[0][1]) ?
-                                            
-                                            <p>tied</p>
-                                            :
-                                            null
-                                        }
-                                    </p>
-                                    :
-                                    null
+                                    <>{
+                                        Object.entries(e[1])[1][0] === team ?
+                                        <p key={i}>
+                                            {
+                                                (Object.entries(e[1])[1][1] > Object.entries(e[1])[0][1]) ?
+                                                
+                                                <p>YES</p>
+                                                :
+                                                null
+                                            }
+                                            {
+                                                (Object.entries(e[1])[1][1] < Object.entries(e[1])[0][1]) ?
+                                                responseRender()
+                                                :
+                                                null
+                                            }
+                                            {
+                                                (Object.entries(e[1])[1][1] === Object.entries(e[1])[0][1]) ?
+                                                
+                                                <p>TIED</p>
+                                                :
+                                                null
+                                            }
+                                        </p>
+                                        :
+                                        null
+                                    }
+                                    </>
                                 }
                                 {/* AWAY */}
                                 {
@@ -61,7 +64,7 @@ function Message({playing, score, team}){
                                         {
                                             (Object.entries(e[1])[0][1] > Object.entries(e[1])[1][1]) ?
                                             
-                                            <p>Winning</p>
+                                            <p>YES</p>
                                             :
                                             null
                                         }
@@ -74,7 +77,7 @@ function Message({playing, score, team}){
                                         {
                                             (Object.entries(e[1])[0][1] === Object.entries(e[1])[1][1]) ?
                                             
-                                            <p>Tied</p>
+                                            <p>TIED</p>
                                             :
                                             null
                                         }
@@ -87,7 +90,7 @@ function Message({playing, score, team}){
                                     (Object.entries(e[1])[0][0] === team) || (Object.entries(e[1])[1][0] === team) ?
                                     null
                                     :
-                                    <p key={i}>not playing</p>
+                                    <p key={i}>NO GAME</p>
                                 }
                             </div>
                             :
