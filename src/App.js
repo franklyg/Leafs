@@ -11,46 +11,50 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 function App() {
 
   const [scoreState, setScore] = useState([]);
-  const [playingState, setPlaying] = useState(null)
-  
-  const TEAM = 'TOR';
+  const [playingState, setPlaying] = useState('')
 
+  const TEAM = 'TOR';
+  
   useEffect(() => {
-      fetch('https://nhl-score-api.herokuapp.com/api/scores/latest')
-      .then(results => results.json())
-      .then(data => {
-        data.games.filter(i => 
-              i.teams.away.abbreviation === TEAM || i.teams.home.abbreviation === TEAM || i.scores[TEAM] >= 0 ?
-              i.scores[TEAM]
-              :
-              setPlaying(false)
-              
-          ).forEach(e=>{
-              setScore(e)
-              e.teams.away.abbreviation === TEAM ? 
-              setPlaying(true)
-              : 
-              setPlaying(false)
-              
-              e.teams.home.abbreviation === TEAM ?
-              setPlaying(true)
-              : 
-              setPlaying(false)
-          })
-      });
+    fetchPost()
   }, []);
 
-  return (
-    <div className="App">
-      <>
-      <Score playing={ playingState } score={ scoreState } team={ TEAM } />
-      {/* {console.log(scoreState.includes())} */}
+  const fetchPost = async () => {
+    fetch('https://nhl-score-api.herokuapp.com/api/scores/latest')
+    .then(results => results.json())
+    .then(data => {
       
-      <Message playing={ playingState } score={ scoreState } team={ TEAM } />
-      </>
-      <img src={leafs} className="logo" alt="Leafs logo"/>
-    </div>
-  );
+
+      data.games.filter(i =>
+            { 
+              if(i.teams.away.abbreviation.toString().indexOf(TEAM) >= 0 ){
+                if(i.teams.away.abbreviation === TEAM){
+                  setPlaying(true)
+                  setScore(i.scores)
+                }
+              }
+
+              if(i.teams.home.abbreviation.toString().indexOf(TEAM) >= 0 ){
+                if(i.teams.home.abbreviation === TEAM){
+                  setPlaying(true)
+                  setScore(i.scores)
+                }
+              }
+            }
+          )
+        });
+  }
+        
+    return (
+      <div className="App">
+        <>
+          <Score playing={ playingState } score={ scoreState } team={ TEAM } />
+          
+          <Message playing={ playingState } score={ scoreState } team={ TEAM } />
+        </>
+        <img src={leafs} className="logo" alt="Leafs logo"/>
+      </div>
+    );
 }
 
 export default App;
