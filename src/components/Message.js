@@ -1,4 +1,5 @@
 import React from 'react';
+import leafs from './../leafs-logo.png'
 
 function Message({playing, score, team, status}){
     
@@ -98,6 +99,16 @@ function Message({playing, score, team, status}){
                    </>
                    :
                    <p>Not Playing</p>
+               }
+               {
+                   playing ? 
+                   <div className='load-out preloader'>
+                       <img src={leafs} className="logo" alt="Leafs logo"/>
+                   </div>
+                   :
+                   <div className='load-in preloader'>
+                        <img src={leafs} className="logo" alt="Leafs logo"/>
+                    </div>
                } 
             </div>
         </div>
