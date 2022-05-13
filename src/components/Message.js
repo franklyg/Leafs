@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Message({playing, score, team}){
+function Message({playing, score, team, status}){
     
     var scoreArray = []
     var teamArray = []
@@ -16,16 +16,31 @@ function Message({playing, score, team}){
         })
         return (
             <>
+            {console.log(status)}
             {/* AWAY */}
             {
                 teamArray[0] === team && scoreArray[0] > scoreArray[1] ?
-                <p>YES</p>
+                <>
+                {
+                    status === 'FINAL' ?
+                    <p>WE WON</p>
+                    :
+                    <p>YES</p>
+                }
+                </>
                 :
                 null
             }
             {
                 teamArray[0] === team && scoreArray[0] < scoreArray[1] ?
-                <p>NO</p>
+                <>
+                    {
+                        status === 'FINAL' ?
+                        <p>WE LOST</p>
+                        :
+                        <p>YES</p>
+                    }
+                </>
                 :
                 null
             }
@@ -38,13 +53,27 @@ function Message({playing, score, team}){
             {/* HOME */}
             {
                 teamArray[1] === team && scoreArray[1] > scoreArray[0] ?
-                <p>YES</p>
+                <>
+                {
+                    status === 'FINAL' ?
+                    <p>WE WON</p>
+                    :
+                    <p>YES</p>
+                }
+                </>
                 :
                 null
             }
             {
                 teamArray[1] === team && scoreArray[1] < scoreArray[0] ?
-                <p>NO</p>
+                <>
+                    {
+                        status === 'FINAL' ?
+                        <p>WE LOST</p>
+                        :
+                        <p>YES</p>
+                    }
+                </>
                 :
                 null
             }

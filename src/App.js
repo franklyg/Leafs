@@ -11,7 +11,8 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 function App() {
 
   const [scoreState, setScore] = useState([]);
-  const [playingState, setPlaying] = useState('')
+  const [playingState, setPlaying] = useState(false)
+  const [gameStatus, setGameStatus] = useState('')
 
   const TEAM = 'TOR';
   
@@ -22,17 +23,19 @@ function App() {
       
       data.games.filter(i =>
             { 
-              if(i.teams.away.abbreviation.toString().indexOf(TEAM) >= 0 ){
+              if(i.teams.away.abbreviation.toString().indexOf(TEAM) >= 0){
                 if(i.teams.away.abbreviation === TEAM){
                   setPlaying(true)
                   setScore(i.scores)
+                  setGameStatus(i.status.state)
                 }
               }
 
-              if(i.teams.home.abbreviation.toString().indexOf(TEAM) >= 0 ){
+              if(i.teams.home.abbreviation.toString().indexOf(TEAM) >= 0){
                 if(i.teams.home.abbreviation === TEAM){
                   setPlaying(true)
                   setScore(i.scores)
+                  setGameStatus(i.status.state)
                 }
               }
               return false;
@@ -48,7 +51,7 @@ function App() {
         <>
           <Score playing={ playingState } score={ scoreState } team={ TEAM } />
           
-          <Message playing={ playingState } score={ scoreState } team={ TEAM } />
+          <Message playing={ playingState } score={ scoreState } team={ TEAM } status={ gameStatus }/>
         </>
         <img src={leafs} className="logo" alt="Leafs logo"/>
       </div>
