@@ -1,25 +1,10 @@
 import React from 'react';
 
 function Message({playing, score, team}){
-    var responses = [
-        "Nope",
-        "F*ck my life",
-        "Triple D is probably on.",
-        "WTF",
-        "LOL",
-        "I can't take this",
-        "Why am I watching this?",
-        ":(",
-        "💩",
-        "#sad"
-    ]
     
     var scoreArray = []
     var teamArray = []
-    function responseRender(){
-        var randomNumber = Math.floor(Math.random()*responses.length);
-        return responses[randomNumber];
-    }
+
     function scoreDiff(){
         Object.entries(score).map((e, i)=>(
             scoreArray.push(e[1]),
