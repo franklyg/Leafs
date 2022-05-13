@@ -7,10 +7,13 @@ function Message({playing, score, team}){
 
     function scoreDiff(){
         Object.entries(score).map((e, i)=>{
-            scoreArray.push(e[1])
-            teamArray.push(e[0])
+            const scores = scoreArray.push(e[1])
+            const teams = teamArray.push(e[0])
+            return {
+                scores,
+                teams
+            }
         })
-        console.log(scoreArray)
         return (
             <>
             {/* AWAY */}

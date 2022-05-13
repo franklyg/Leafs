@@ -16,15 +16,10 @@ function App() {
   const TEAM = 'TOR';
   
   useEffect(() => {
-    fetchPost()
-  }, []);
-
-  const fetchPost = async () => {
     fetch('https://nhl-score-api.herokuapp.com/api/scores/latest')
     .then(results => results.json())
     .then(data => {
       
-
       data.games.filter(i =>
             { 
               if(i.teams.away.abbreviation.toString().indexOf(TEAM) >= 0 ){
@@ -40,10 +35,13 @@ function App() {
                   setScore(i.scores)
                 }
               }
+              return false;
             }
           )
         });
-  }
+  }, []);
+
+  
         
     return (
       <div className="App">
