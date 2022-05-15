@@ -39,7 +39,7 @@ function Message({playing, score, team, status}){
                         status === 'FINAL' ?
                         <p>WE LOST</p>
                         :
-                        <p>YES</p>
+                        <p>NO</p>
                     }
                 </>
                 :
@@ -72,7 +72,7 @@ function Message({playing, score, team, status}){
                         status === 'FINAL' ?
                         <p>WE LOST</p>
                         :
-                        <p>YES</p>
+                        <p>NO</p>
                     }
                 </>
                 :
