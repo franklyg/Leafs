@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import leafs from './../leafs-logo.png'
+import Counter from './Counter';
 
-function Message({playing, score, team, status}){
+function Message({playing, score, team, status, startTime}){
     
-    var scoreArray = []
-    var teamArray = []
-
     function scoreDiff(){
-        Object.entries(score).map((e, i)=>{
+
+        var scoreArray = []
+        var teamArray = []
+
+        Object.entries(score).map((e, i) => {
             const scores = scoreArray.push(e[1])
             const teams = teamArray.push(e[0])
             return {
@@ -15,9 +17,9 @@ function Message({playing, score, team, status}){
                 teams
             }
         })
+
         return (
             <>
-            {console.log(status)}
             {/* AWAY */}
             {
                 teamArray[0] === team && scoreArray[0] > scoreArray[1] ?
@@ -87,6 +89,7 @@ function Message({playing, score, team, status}){
             </>
         )
     }
+
     return(
         <div className="component-score">
             <div className="message">
@@ -104,10 +107,12 @@ function Message({playing, score, team, status}){
                    playing ? 
                    <div className='load-out preloader'>
                        <img src={leafs} className="logo" alt="Leafs logo"/>
+                       <Counter countDownTime={ startTime } />
                    </div>
                    :
                    <div className='load-in preloader'>
-                        <img src={leafs} className="logo" alt="Leafs logo"/>
+                        {/* <img src={leafs} className="logo" alt="Leafs logo"/> */}
+                        {/* <p>Back at it next year.</p> */}
                     </div>
                } 
             </div>
