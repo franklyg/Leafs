@@ -7,7 +7,7 @@ function Score({playing, score, team}){
             {
                 Object.entries(score).map((e, i)=>(
                     <>
-                    <p>{ e[0] } { e[1] }</p>
+                        <p key={i}>{ e[0] } { e[1] }</p>
                     </>
                 ))
             }

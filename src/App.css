@@ -3,6 +3,31 @@ body{
   background: #00205a;
 
 }
+h1,h2,h3,p,ul,li{
+  margin: 0;
+}
+.brand{
+  width: 100%;
+  min-height: calc(100vh - (160));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.message-holder {
+  width: 80vw;
+  height: 80vw;
+  position: relative;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 768px){
+  .message-holder {
+    width: 40vw;
+    height: 40vw;
+  }
+}
 .logo{
   position: absolute;
   top: 0;
@@ -13,13 +38,44 @@ body{
   display: block;
   filter: blur(11px);
   z-index: 0;
-  width: 80vw;
-  max-width: 500px;
+  width: 90%;
 }
-@media (min-width: 1024px){
-  .logo{
-    top: 5vw;
+.heading{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  font-weight: 800;
+  /* line-height: 0; */
+  animation: spinningTitle 30s infinite linear;
+}
+@keyframes spinningTitle {
+  0%{
+    transform: rotate(0deg);
   }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+.letter{
+  color: white;
+  font-size: 9vw;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+@media screen and (min-width: 768px){
+  .letter{
+    font-size: 4vw;
+  }
+
+}
+.letter span{
+  display: block;
+  text-align: center;
+  text-shadow: 0 0 3px rgba(0,0,0,.5);
 }
 .component-score{
   width: 100vw;
@@ -31,53 +87,48 @@ body{
   align-items: center;
   justify-content: center;
 }
-.message,
-.score{
+.message{
   font-family: 'Bebas Neue';
   text-align: center;
-}
-.message{
-  font-size: 14vw;
+  position: relative;
+  z-index: 10;
+  font-size: 25vw;
   line-height: 14vw;
   color: white;
   text-shadow: 0px 0px 8px rgb(0 0 0 / 50%);
   font-weight: bold; 
-  height: 100vh;
-  width: calc(100vw - 20px);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 0 10px;
 }
+@media screen and (min-width: 768px){
+  .message{
+    font-size: 14vw;
+  }
+}
 .score{
-  position: absolute;
   width: 100%;
   text-align: center;
   top: 0;
   left: 0;
   right: 0;
   margin: 0;
-  font-size: 5vw;
+  font-size: 1rem;
   color: #00205a;
-  background: white;
   padding: 15px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
 }
 .score p{
   margin: 0;
-  letter-spacing: 3px;
   font-weight: bold;
-}
-.score p:nth-child(3){
-  font-size: 2vw;
-}
-@media (min-width: 768px) {
-  .score{
-    font-size: 2.5vw;
-  }
-  .score p:nth-child(3){
-    font-size: 1vw;
-  }
+  color: white;
+  padding: 0 16px;
+  font-weight: 300;
 }
 
 .preloader{
@@ -99,7 +150,21 @@ body{
   opacity: 1;
   visibility: visible;
 }
-
+.stats--inner{
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding: .5rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  color: white;
+  font-size: .688rem;
+  line-height: 1.5;
+}
+.stats--inner .home{
+  text-align: right;
+}
 @keyframes loadOut {
   0%{
     opacity: 1;
