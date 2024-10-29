@@ -1,6 +1,6 @@
 import React    from 'react';
 
-function Score({playing, score, team}){
+function Score({playing, score, team, period, time}){
     return(
         
         <div className="score">
@@ -11,6 +11,10 @@ function Score({playing, score, team}){
                     </>
                 ))
             }
+            <div className="game-status">
+                <p>{period} Period</p>
+                <p>{time}</p>
+            </div>
         </div>
     )
 }

@@ -110,10 +110,11 @@ function Message({playing, score, team, status, startTime}){
                        <Counter countDownTime={ startTime } />
                    </div>
                    :
-                   <div className='load-in preloader'>
-                        {/* <img src={leafs} className="logo" alt="Leafs logo"/> */}
-                        {/* <p>Back at it next year.</p> */}
-                    </div>
+                   null
+                //    <div className='load-in preloader'>
+                //         {/* <img src={leafs} className="logo" alt="Leafs logo"/> */}
+                //         {/* <p>Back at it next year.</p> */}
+                //     </div>
                } 
             </div>
         </div>
