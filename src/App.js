@@ -5,10 +5,19 @@ import Message from './components/Message';
 import Score from './components/Score';
 import Stats from './components/Stats';
 
-import ReactGA from 'react-ga';
-ReactGA.initialize('UA-211632738-1');
-ReactGA.pageview(window.location.pathname + window.location.search);
+import ReactGA from 'react-ga4';
+ReactGA.initialize('G-0K5Y5P8S6T');
+ReactGA.send('pageview');
+ReactGA.event(window.location.pathname + window.location.search)
+// ReactGA.pageview(window.location.pathname + window.location.search);
+{/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-0K5Y5P8S6T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-0K5Y5P8S6T');
+</script> */}
 function App() {
 
   const [scoreState, setScore] = useState([]);
