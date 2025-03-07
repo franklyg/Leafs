@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import tbLogo from './../tb-logo.svg';
+import tbLogo from './../tb-logo.png';
 
 function Stats({stats, team, teamInfo}) {
     const teamConfirm = teamInfo !== undefined ? teamInfo.home.abbreviation : null
